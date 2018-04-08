@@ -8,6 +8,8 @@ This front-end part uses D3.js and React. Project was bootstrapped with [Create 
 
 This Scatterplot is mock-up which represents data visualization. X-axis represents a timeline. Y-axis represents a duration. Component dimensions adapt to container size. Dots with status in the appropriate color appear on the scatterplot. Each dot has selected styles.
 
+<img width="986" alt="scatterplot" src="https://user-images.githubusercontent.com/22913344/38465273-2d6e05e8-3b1a-11e8-9bbb-6ff17873d7bd.png">
+
 ## Back-end service API
 
 This back-end service uses Facebook's GraphQL and Express.js.
