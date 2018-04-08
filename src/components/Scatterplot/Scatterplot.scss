@@ -1,0 +1,75 @@
+.Scatterplot {
+    .selected {
+        animation: Scatterplot-resize 100ms linear;
+        stroke-width: 4;
+        r: 12;
+        filter: url('#dropshadow');
+    }
+
+    .xAxisG {
+        .domain {
+            opacity: 0;
+        }
+        
+        .tick {
+            line {
+                opacity: 0.3;
+                stroke-width: 2;
+            }
+
+            text {
+                font-size: 14px;
+                opacity: 0.3; 
+            }
+        }
+
+        .tick:nth-child(2),
+        .tick:last-child {
+            display: none;
+        }
+    }
+
+    .yAxisG {
+        .domain {
+            opacity: 0;
+        }
+
+        .tick {
+            text {
+                font-size: 14px;
+                opacity: 0.3; 
+            }
+            line {
+                opacity: 0.1;
+            }
+        }
+
+        .tick:nth-child(odd) {
+            text {
+                display: none;
+            }
+        }
+
+        .tick:nth-child(2) {
+            text {
+                display: none;
+            }
+        }
+
+        .tick:not(:nth-child(2)) {
+            line {
+                stroke-dasharray: 5 5;       
+            }
+        }
+    }
+    .legend {
+        text {
+            opacity: 0.3
+        }
+    }
+}
+
+@keyframes Scatterplot-resize {
+    from { r: 8; stroke-width: 0; }
+    to { r: 12; stroke-width: 4; }
+}
