@@ -98,17 +98,17 @@ class Scatterplot extends Component {
       .attr('transform', (d, i) => `translate(${WIDTH + MARGIN.right - i * 75}, 40)`)
    
     legend
-        .append("circle")
-        .attr('r', 7)
-        .attr("cx", 0)
-        .attr("cy", 11)
-        .style("fill", scaleColor);
+      .append("circle")
+      .attr('r', 7)
+      .attr("cx", 0)
+      .attr("cy", 11)
+      .style("fill", scaleColor);
   
     legend.append("text")
-        .attr("x", 14)
-        .attr("y", 4)
-        .attr("dy", "12px")
-        .text(d => d);
+      .attr("x", 14)
+      .attr("y", 4)
+      .attr("dy", "12px")
+      .text(d => d);
   }
 
   clickHandler() {

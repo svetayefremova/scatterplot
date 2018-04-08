@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "apollo-boost": "^0.1.4",
-    "apollo-cache-inmemory": "^1.1.12",
     "apollo-client": "^2.2.8",
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",

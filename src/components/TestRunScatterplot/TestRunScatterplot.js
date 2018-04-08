@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
-import Scatterplot from '../Scatterplot/Scatterplot';
 import { extent } from 'd3-array';
-import './TestRunScatterplot.scss';
+import Scatterplot from '../Scatterplot/Scatterplot';
 
 const query = gql`
   query plotpoints($startDate: String!, $endDate: String!) {
-    plotpoints(points: 20,
+    plotpoints(
       startDate: $startDate,
       endDate: $endDate,
       startDuration: 0,
@@ -53,20 +52,17 @@ class TestRunScatterplot extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { error, loading, plotpoints } = this.props.data;
 
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error :(</p>;
     
     return (
-      <div className="TestRunScatterplot">
-        <Scatterplot 
-          data={this.formatData(plotpoints)}
-          from={this.props.from} 
-          to={this.props.to} 
-        />
-      </div>
+      <Scatterplot 
+        data={this.formatData(plotpoints)}
+        from={this.props.from} 
+        to={this.props.to} 
+      />
     );
   }
 }

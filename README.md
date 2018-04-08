@@ -44,7 +44,6 @@ Use following query as an example to check results from service API:
 ```
 {
   plotpoints(
-    points: 20,
     startDate: "2018-04-01",
     endDate: "2018-04-08",
     startDuration: 0,

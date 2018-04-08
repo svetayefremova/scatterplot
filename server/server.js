@@ -27,7 +27,6 @@ const queryType = new GraphQLObjectType({
     plotpoints: {
       type: new GraphQLList(plotpointsType),
       args: {
-        points: { type: GraphQLInt },
         startDate: { type: GraphQLString },
         endDate: { type: GraphQLString },
         startDuration: { type: GraphQLInt },
@@ -36,19 +35,24 @@ const queryType = new GraphQLObjectType({
       resolve: (_, args) => {
         const startDate = new Date(args.startDate),
               endDate = new Date(args.endDate),
+              days = (endDate.getTime() - startDate.getTime()) / (60 * 60 * 24) / 1000 + 1,
               result = [];
 
-        for (var i = 0; i < args.points; ++i) {
-          const randomDate = new Date(getRandomInt(startDate.getTime(), endDate.getTime()));
+        for (var d = 0; d < days; ++d) {
+          const randomPoints = getRandomInt(2, 8);
 
-          result.push({
-            // get random dates between "startDate" and "endDate" using format: YYYY-MM-DDTHH:MM:SSZ
-            start_time: randomDate.toISOString().slice(0, -5) + 'Z',
-            // get random value for a list of ["pass", "error", "fail"]
-            status: statusList[getRandomInt(0, 3)],
-            // get random value between "startDuration" and "endDuration"
-            duration: getRandomInt(args.startDuration, args.endDuration)
-          });
+          for (var p = 0; p < randomPoints; ++p) {
+            const randomDate = new Date(getRandomInt(startDate.getTime(), endDate.getTime()));
+
+            result.push({
+              // get random dates between "startDate" and "endDate" using format: YYYY-MM-DDTHH:MM:SSZ
+              start_time: randomDate.toISOString().slice(0, -5) + 'Z',
+              // get random value for a list of ["pass", "error", "fail"]
+              status: statusList[getRandomInt(0, 3)],
+              // get random value between "startDuration" and "endDuration"
+              duration:getRandomInt(args.startDuration, args.endDuration)
+            });
+          }
         }
 
         return result;

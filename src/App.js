@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ApolloClient from "apollo-boost";
 import { ApolloProvider }  from 'react-apollo';
-import TestRunScatterplot from './components/TestRunScatterplot/TestRunScatterplot';
 import DayPicker, { DateUtils } from 'react-day-picker';
+import TestRunScatterplot from './components/TestRunScatterplot/TestRunScatterplot';
 import 'react-day-picker/lib/style.css';
 
 const client = new ApolloClient({
@@ -29,7 +29,7 @@ class App extends Component {
    
     return (
       <ApolloProvider client={client}>
-        <div class="App">
+        <div>
           <DayPicker
             className="Selectable"
             numberOfMonths={1}
