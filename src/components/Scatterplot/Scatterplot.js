@@ -39,8 +39,8 @@ class Scatterplot extends Component {
 
     const xScale = scaleTime()
       .domain([this.props.from, this.props.to])
-      .range([0, WIDTH])
-      .nice(timeDay, 2);
+      .range([50, WIDTH - 50])
+      .nice(timeDay, 1);
     const yScale = scaleLinear()
       .domain([0, 5])
       .range([HEIGHT, 0]);
@@ -53,8 +53,12 @@ class Scatterplot extends Component {
 
   renderAxis = (xScale, yScale) => {
     const scatterplot = select('#scatterplot');
-
-    const xAxis = axisBottom(xScale).ticks(timeDay).tickFormat(timeFormat("%b %d")).tickSize(8);
+    const unickDates = this.props.data.filter((el, i) => {
+      const data = this.props.data.map(el => el.start_time.toDateString());
+      return data.indexOf(el.start_time.toDateString()) === i;
+    });
+    const customTicks = unickDates.length > 8 ? unickDates.length / 8 : 1;
+    const xAxis = axisBottom(xScale).ticks(timeDay.every(customTicks)).tickFormat(timeFormat("%b %d")).tickSize(8);
     scatterplot
       .append("g")
       .attr("class", "xAxisG")
