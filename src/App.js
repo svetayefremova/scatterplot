@@ -12,14 +12,21 @@ const client = new ApolloClient({
 class App extends Component {
   constructor() {
     super();
+    // get currentDate (this will be our end date in the range) 
+    //using format: YYYY-MM-DDTHH:MM:SSZ
+    const currentDate = new Date();
+    // calculate 7 days before current date (this will be our start date in the range)
+    // using format: YYYY-MM-DDTHH:MM:SSZ
+    const startDate = new Date(currentDate.getTime() - 7 * 86400000);
     this.state = {
-      from: new Date('2018-04-01'),
-      to: new Date('2018-04-08')
+      from: startDate,
+      to: currentDate
     }
   }
 
   handleDayClick = (day) => {
     const range = DateUtils.addDayToRange(day, this.state);
+    //change selected range of dates in scatterplot
     this.setState(range);
   }
   

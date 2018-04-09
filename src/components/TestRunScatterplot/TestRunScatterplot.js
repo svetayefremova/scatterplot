@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 import { extent } from 'd3-array';
 import Scatterplot from '../Scatterplot/Scatterplot';
 
+// use query to get random data
 const query = gql`
   query plotpoints($startDate: String!, $endDate: String!) {
     plotpoints(
@@ -21,7 +22,9 @@ const query = gql`
 class TestRunScatterplot extends Component {
   componentWillReceiveProps(newProps) {
     if (!newProps.data.loading) {
+      // when fetching of random data is finished format objects of data to apropriate values
       const data = this.formatData(newProps.data.plotpoints);
+      // find maximum and minimum date in the list
       const domain = extent(data, d => d.start_time);
       this.setState({
         from: domain[0],
@@ -39,12 +42,13 @@ class TestRunScatterplot extends Component {
     }
   }
 
+  // use this method to format fetching data
   formatData = (data, start, end) => {
     const newData = [];
     data.forEach((d) => {
       newData.push({
-        start_time: new Date(d.start_time),
-        duration: d.duration / 60,
+        start_time: new Date(d.start_time), // format start_time to full text string format (example Wed Mar 25 2015 01:00:00 GMT+0100 (CET)
+        duration: d.duration / 60, // fromat seconds in minutes
         status: d.status
       })
     });
